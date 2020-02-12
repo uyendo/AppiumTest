@@ -2,7 +2,7 @@ const wdio = require("webdriverio");
 const assert = require("assert");
 
 const opts = {
-  port: 5723,
+  port: 4723,
   // capabilities: {
   //   platformName: 'iOS',
   //   automationName: 'XCUITest',
@@ -16,16 +16,17 @@ const opts = {
   capabilities: {
     "platformName": "iOS",
     "automationName": "XCUITest",
-    "deviceName": "iPad Pro (12.9-inch) (12.4)",
-    "platformVersion": "12.4",
-    "app": "/Users/udo2/Documents/LCA/Source/ios/ANZ-Health-Mobile/platforms/ios/build/emulator/CommunityAide.app",
-    "udid": "1E537C50-7C0E-416D-8BC2-81DED075A34A",
-    "autoWebview": true,
+    "deviceName": "Long’s iPad (13.2.3)",
+    "app": "/Users/uyendo/Documents/CommunityAide 2020-02-13 01-16-09/Payload/CommunityAide.app",
+    "udid": "00008027-001828523685002E",
     "waitForQuietness": false,
     "waitForQuiescence": false,
     "wdaEventloopIdleDelay": 7,
     "eventLoopIdleDelaySec": 4,
-    "startIWDP": true
+    "startIWDP": true,
+    "xcodeOrgId": "AUN69W4C9B",
+    "xcodeSigningId": "iPhone Developer",
+    autoWebview: true
   }
 };
 
@@ -65,12 +66,15 @@ async function main1 () {
 async function main () {
   const driver = await wdio.remote(opts);
   // let el1 = await driver.$("//XCUIElementTypeOther[@name=\"North Bristol NHS Trust\"]");
-  let el1 = await driver.$("//dxc-connection-configuration//ion-radio[2]");
+  let el1 = await driver.$("//dxc-connection-configuration//ion-radio[1]");
   await el1.waitForExist(15000);
   await el1.click();
-  let el2 = await driver.$("//ion-icon[contains(@name, 'archive')]");
+  let el2 = await driver.$("//ion-toolbar//ion-buttons//button");
   await el2.waitForExist(15000);
   await el2.click();
+  let el3 = await driver.$("//dxc-portal-login//button");
+  await el3.waitForExist(15000);
+  await el3.click();
   // let el3 = await driver.$("~Portal Login");
   // await el3.click();
   // let el2 = await driver.$("~archive Save");
